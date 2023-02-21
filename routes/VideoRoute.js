@@ -60,7 +60,7 @@ router.put("/update/:videoid/:userid", async (req, res) => {
    try {
       const user = await userModel.findOne({ _id: userid })
       if (user.isadmin) {
-         const updateVideo = await videoModel.findOneAndUpdate(videoid, { title, videolink, videoLength })
+         const updateVideo = await videoModel.findByIdAndUpdate(videoid, { title, videolink, videoLength })
          res.status(200).json(updateVideo)
       } else {
          return res.status(403).json({ err: 'err' })
